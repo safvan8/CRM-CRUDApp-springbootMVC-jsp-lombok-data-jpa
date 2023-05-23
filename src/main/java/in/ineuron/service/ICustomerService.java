@@ -15,4 +15,8 @@ public interface ICustomerService {
 	 */
 	public List<Customer> getCustomers();
 
+	/**
+	 * @param customer object for saving to DB
+	 */
+	public void saveCustomer(Customer customer);
 }

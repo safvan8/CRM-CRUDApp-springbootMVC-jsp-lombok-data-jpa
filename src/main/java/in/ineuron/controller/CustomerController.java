@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import in.ineuron.model.Customer;
@@ -53,4 +55,19 @@ public class CustomerController {
 		return "customer-form";
 	}
 
+	/**
+	 * @param customer object from the spring taglib form
+	 * @return - view name : redirecting to the liting page again
+	 */
+	@PostMapping("/saveCustomer")
+	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
+		System.out.println(customer);
+
+		// sending object for saving to db
+		service.saveCustomer(customer);
+
+		// redirecting to the list page after saving automtaically, to check whether it
+		// is added to table list
+		return "redirect:/customer/list";
+	}
 }

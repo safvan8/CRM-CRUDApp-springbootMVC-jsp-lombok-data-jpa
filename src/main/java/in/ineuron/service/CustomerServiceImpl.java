@@ -29,4 +29,13 @@ public class CustomerServiceImpl implements ICustomerService {
 		return (List<Customer>) customerDAO.findAll();
 	}
 
+	/**
+	 * @param customer object for saving to DB
+	 */
+	@Override
+	public void saveCustomer(Customer customer) {
+		Customer savedCustomer = customerDAO.save(customer);
+		System.out.println("Saved Object is: " + savedCustomer);
+	}
+
 }
