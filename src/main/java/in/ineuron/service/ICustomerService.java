@@ -19,4 +19,10 @@ public interface ICustomerService {
 	 * @param customer object for saving to DB
 	 */
 	public void saveCustomer(Customer customer);
+
+	/**
+	 * @param customerId - for retreiving from DB
+	 * @return Customer object based on ID supplied
+	 */
+	public Customer getCustomer(Integer customerId);
 }

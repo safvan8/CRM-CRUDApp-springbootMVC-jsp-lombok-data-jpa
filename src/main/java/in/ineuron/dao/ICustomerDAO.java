@@ -27,6 +27,6 @@ import in.ineuron.model.Customer;
  * 
  * @author safvan
  */
-public interface ICustomerDAO extends PagingAndSortingRepository<Customer, String> {
+public interface ICustomerDAO extends PagingAndSortingRepository<Customer, Integer> {
 
 }

@@ -1,6 +1,7 @@
 package in.ineuron.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	private ICustomerDAO customerDAO;
 
 	/**
-	 * @return List<Customer> - all the availble Customer Objects in Database.
+	 * @return List<Customer> - all the availble Customer Objects from Database.
 	 */
 	@Override
 	public List<Customer> getCustomers() {
@@ -38,4 +39,13 @@ public class CustomerServiceImpl implements ICustomerService {
 		System.out.println("Saved Object is: " + savedCustomer);
 	}
 
+	/**
+	 * @param customerId - for retreiving from DB
+	 * @return Customer object based on ID supplied
+	 */
+	@Override
+	public Customer getCustomer(Integer customerId) {
+		Optional<Customer> customer = customerDAO.findById(customerId);
+		return customer.get();
+	}
 }

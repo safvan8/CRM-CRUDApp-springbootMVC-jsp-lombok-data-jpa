@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import in.ineuron.model.Customer;
 import in.ineuron.service.ICustomerService;
@@ -70,4 +71,23 @@ public class CustomerController {
 		// is added to table list
 		return "redirect:/customer/list";
 	}
+
+	/**
+	 * for displaying edit form, Id is accessed through one way binding
+	 * 
+	 * @param customerId - ID of the customer for updating details, passed as
+	 *                   request param.
+	 * @param model      - for displying the retrived customer object from db and
+	 *                   desplaying.
+	 * @return view name - conatins form for saving and updating purpose.
+	 */
+	@GetMapping("/showFormForUpdate")
+	public String showFormForUpdate(@RequestParam Integer customerId, Map<String, Object> model) {
+		Customer customer = service.getCustomer(customerId);
+		System.out.println(customer);
+
+		model.put("customer", customer);
+		return "customer-form";
+	}
+
 }
