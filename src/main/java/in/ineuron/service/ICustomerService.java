@@ -25,4 +25,9 @@ public interface ICustomerService {
 	 * @return Customer object based on ID supplied
 	 */
 	public Customer getCustomer(Integer customerId);
+
+	/**
+	 * @param customerId - for deleting from DB
+	 */
+	public void deleteById(Integer customerId);
 }

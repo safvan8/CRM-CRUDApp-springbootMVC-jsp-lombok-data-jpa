@@ -3,6 +3,8 @@ package in.ineuron.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,7 @@ import in.ineuron.dao.ICustomerDAO;
 import in.ineuron.model.Customer;
 
 /**
- * Implementation class of ICustomerService
+ * Implementation class of ICustomerService, contains all the service methods.
  * 
  * @author safvan
  *
@@ -33,6 +35,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	/**
 	 * @param customer object for saving to DB
 	 */
+	@Transactional
 	@Override
 	public void saveCustomer(Customer customer) {
 		Customer savedCustomer = customerDAO.save(customer);
@@ -47,5 +50,14 @@ public class CustomerServiceImpl implements ICustomerService {
 	public Customer getCustomer(Integer customerId) {
 		Optional<Customer> customer = customerDAO.findById(customerId);
 		return customer.get();
+	}
+
+	/**
+	 * @param customerId - for deleting from DB
+	 */
+	@Transactional
+	@Override
+	public void deleteById(Integer customerId) {
+		customerDAO.deleteById(customerId);
 	}
 }

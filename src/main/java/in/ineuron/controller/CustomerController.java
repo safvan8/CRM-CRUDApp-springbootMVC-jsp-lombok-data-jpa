@@ -58,7 +58,7 @@ public class CustomerController {
 
 	/**
 	 * @param customer object from the spring taglib form
-	 * @return - view name : redirecting to the liting page again
+	 * @return - view name : redirecting to the listing page again
 	 */
 	@PostMapping("/saveCustomer")
 	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
@@ -88,6 +88,16 @@ public class CustomerController {
 
 		model.put("customer", customer);
 		return "customer-form";
+	}
+
+	/**
+	 * @param customerId - for deleting from DB
+	 * @return String -view name : redirecting to the listing page again
+	 */
+	@GetMapping("/performDelete")
+	public String deleteCustomer(@RequestParam Integer customerId) {
+		service.deleteById(customerId);
+		return "redirect:/customer/list";
 	}
 
 }
